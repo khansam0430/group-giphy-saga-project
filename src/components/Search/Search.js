@@ -28,22 +28,29 @@ class Search extends Component {
 
 
   render() {
+    
     return (
       <div className="searchForm">
-          <input placeholder="Search Giphy" 
-              onChange={this.handleChange}
-              className="input" />
-          <button onClick={this.handleSubmit}>Search</button>
-          
-          {/* <div className="random">
+        <input
+          placeholder="Search Giphy"
+          onChange={this.handleChange}
+          className="input"
+        />
+        <button onClick={this.handleSubmit}>Search</button>
 
+        <div className="random">
+          {this.props.reduxState.searchReducer.data && (
             <ul>
-          {this.props.reduxState.searchReducer.data.map(giffer => 
-            <li>
-              <img src={giffer.url}/>
-            </li>)}
-            </ul> 
-       </div> */}
+              {this.props.reduxState.searchReducer.data.map(image => (
+                <li>
+                  <img alt="title" src={image.images.fixed_width.url} /> 
+                  <br/>
+                  {image.title}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     );
   }
