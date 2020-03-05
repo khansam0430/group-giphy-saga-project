@@ -7,6 +7,7 @@ class App extends Component {
     return (
       <div>
         <h1>Giphy Search!</h1>
+        <h2>Hi, my name is Jessie.</h2>
       </div>
     );
   }
