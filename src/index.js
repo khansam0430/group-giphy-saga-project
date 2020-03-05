@@ -13,6 +13,7 @@ import Axios from "axios";
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('SET_SEARCH', addGiphy);
+    // yield takeEvery('SET_FAV', postGiphy);
 
 }
 
