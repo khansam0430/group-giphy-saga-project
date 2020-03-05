@@ -1,16 +1,56 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
 
 class Search extends Component {
 
+  state={
+
+  }
+  
+  handleSubmit=(event)=>{
+    event.preventDefault();
+    console.log(this.state)
+    this.props.dispatch({
+      type: 'SET_SEARCH',
+      payload: this.state
+    })
+}
+
+
+
+
+  handleChange=(event)=>{
+    this.setState({
+        search: event.target.value
+    })
+}
+
+
   render() {
     return (
-      <div className="search">
-        <h1>Giphy Search!</h1>
+      <div className="searchForm">
+          <input placeholder="Search Giphy" 
+              onChange={this.handleChange}
+              className="input" />
+          <button onClick={this.handleSubmit}>Search</button>
+          
+          {/* <div className="random">
+
+            <ul>
+          {this.props.reduxState.searchReducer.data.map(giffer => 
+            <li>
+              <img src={giffer.url}/>
+            </li>)}
+            </ul> 
+       </div> */}
       </div>
     );
   }
-  
 }
 
-export default Search;
+const putReduxStateOnProps = (reduxState) => ({
+  reduxState
+});
+
+export default connect(putReduxStateOnProps)(Search);

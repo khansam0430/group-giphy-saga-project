@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Search from '../Search/Search'
 
 
 class App extends Component {
@@ -10,6 +11,7 @@ class App extends Component {
         <h2>Hi, my name is Jessie.</h2>
         <h2>Hi, my name is Samreen.</h2>
         <h2>Hi, my name is  Joel</h2>
+        <Search/>
       </div>
     );
   }
