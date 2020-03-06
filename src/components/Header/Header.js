@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import {HashRouter as Route, Link, Router} from 'react-router-dom';
-import Favorite from '../Favorite/Favorite'
-
-
+import { Link } from 'react-router-dom';
 
 
 class Header extends Component {
