@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-
+import { Link } from 'react-router-dom';
 
 class Favorite extends Component {
 
@@ -15,6 +15,13 @@ class Favorite extends Component {
   render() {
     return (
       <div className="favorite">
+          <div className="nav">
+          <Link to="/funny" className="favoriteLink">Funny</Link>
+          <Link to="/cohort" className="favoriteLink">Cohort</Link>
+          <Link to="/cartoon" className="favoriteLink">Cartoon</Link>
+          <Link to="/nsfw" className="favoriteLink">NSFW</Link>
+          <Link to="/misc" className="favoriteLink">MISC</Link>
+          </div>
         <h1>Giphy Favorites!</h1>
         <div className="container">
           <div >

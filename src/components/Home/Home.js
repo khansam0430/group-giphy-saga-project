@@ -6,7 +6,7 @@ class Home extends Component {
 
   
   render() {
-
+    // just keeping this as a reference for future use.. not doing anything in this particular project.
     return (
         <div className="home">
         <Router>
