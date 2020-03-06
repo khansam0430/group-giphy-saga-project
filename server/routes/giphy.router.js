@@ -3,8 +3,6 @@ const router = express.Router();
 const axios = require('axios');
 
 
-
-
 router.get('/:search', (req,res)=>{
     let searchParams = req.params.search
 
@@ -15,8 +13,7 @@ router.get('/:search', (req,res)=>{
         console.log('you got an error!', error);
         res.sendStatus(500);
     })
-
-
 })
+
 
 module.exports = router;
