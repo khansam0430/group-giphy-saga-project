@@ -13,8 +13,9 @@ import Axios from "axios";
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('SET_SEARCH', addGiphy);
-    // yield takeEvery('SET_FAV', postGiphy);
-
+    yield takeEvery('DISPLAY_FAV', getGiphy);
+    yield takeEvery('ADD_FAV', postGiphy);
+    yield takeEvery('REMOVE_FAV', deleteGiphy);
 }
 
 function* addGiphy(giphy) {
@@ -24,12 +25,30 @@ function* addGiphy(giphy) {
     console.log('its snowing outside now', searchResponse.data)
 }
 
-function* postGiphy() {
-  
+function* getGiphy(){
+    const gimmieGif = yield Axios.get('/api/favorite');
+    console.log('this saga came from favorite/GET bringing: ', gimmieGif.data)
+    yield put({type: 'SET_FAV', payload: gimmieGif.data})
 }
 
-function* deleteGiphy(action) {
+function* postGiphy(fav) {
+    console.log('in saga post', fav.payload);
+    try {
+        yield Axios.post('/api/favorite', fav.payload);
+        yield put({type: 'DISPLAY_FAV'})
+    } catch(error){
+        console.log(error);
+    }
+}
 
+function* deleteGiphy(remove) {
+    console.log("in saga delete with: ", remove.payload);
+    try {
+        yield Axios.delete(`/api/favorite/${remove.payload}`);
+        yield put({type: 'DISPLAY_FAV'})
+    } catch(error){
+        console.log(error);
+    }
 }
 
 // Create sagaMiddleware
@@ -47,10 +66,20 @@ const searchReducer = (state = {}, action) => {
     }
 }
 
+const categoryReducer = (state = [], action) => {
+    switch(action.type){
+        case 'SET_FAV':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
-        searchReducer
+        searchReducer,
+        categoryReducer
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

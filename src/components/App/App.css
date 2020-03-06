@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa|Patua+One');
+
+body {
+	background: hsl(0, 0%, 90%);
+}
+
+body, button, input, select, textarea {
+	color: #404040;
+	font-family: 'Comfortaa', Arial, sans-serif;
+	font-size: 18px;
+    line-height: 1.5;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+h1, h2{
+    clear: both;
+    font-family: 'Patua One', sans-serif;
+    letter-spacing: 2px;
+}
+
+.header {
+	background-color: #005b75;
+}
+
+.header p, .header p a {
+  color: white;
+}
+
+.site-title {
+    color: white;
+    margin: 20px;
+    padding: 10px;
+}
+
+
+.nav {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    color: white;
+}
+
+.favoriteLink {
+    float: left;
+}
+
+.favoriteLink:hover {
+    background-color: #111;
+    font-size: larger;
+}
+
+.favoriteLink {
+    display: block;
+    background-color: #333;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.otherLinks {
+    display: block;
+    background-color: #333;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.otherLinks:hover {
+    font-size: larger;
+}
+
+img {
+	display: block;
+	border: 0;
+	width: 100%;
+	height: auto;
+}
+
+.home{
+    margin: auto;
+    text-align: center;
+}
+
+.favorite{
+    margin: auto;
+    text-align: center;
+}
+
+.gif {
+	background: white;
+    margin-bottom: 2em;	
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.gif a {
+	color: black;
+	text-decoration: none;
+}
+
+.gif a:hover {
+	box-shadow: 3px 3px 8px hsl(0, 0%, 80%);
+}
+
+.title {
+	padding: 1.4em;
+}
+
+.title h2 {
+	margin-top: 0;
+	margin-bottom: .5em;
+	font-weight: bold;
+}
+
+.title p {
+	font-size: 80%;
+}
+
+/* Flexbox stuff */
+
+.display {
+    display: flex;
+    flex-wrap: wrap;
+ }
+
+.gif {
+    flex: 1 0 500px;
+    box-sizing: border-box;
+    margin: 1rem .25em;
+    text-align: center;
+}
+
+@media screen and (min-width: 40em) {
+    .gif {
+       max-width: calc(50% -  1em);
+    }
+}
+
+@media screen and (min-width: 60em) {
+    .gif {
+        max-width: calc(25% - 1em);
+    }
+}
+
+.container {
+    margin: 0 auto;
+    padding: 0 1em;
+}
+
+@media screen and (min-width: 52em) {
+    .container {
+        max-width: 52em;
+    }
+}
