@@ -37,10 +37,10 @@ router.post('/', (req, res) => {
 });
 
 // update given favorite with a category id ----------------can use this route to move favorites later
-router.put('/:favId', (req, res) => {
-  // req.body should contain a category_id to add to this favorite image
-  res.sendStatus(200);
-});
+// router.put('/:favId', (req, res) => {
+//   // req.body should contain a category_id to add to this favorite image
+//   res.sendStatus(200);
+// });
 
 // delete a favorite
 router.delete('/:id', (req, res) => {
@@ -55,6 +55,18 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-
+router.put('/:id', (req, res) => {
+  const updateCategory = req.body;
+  const queryText = `UPDATE favorites SET "category_id" = $1 WHERE id=$2;`;
+  const queryValues = [updateCategory.id]
+  pool.query(queryText, [queryValues, req.params.id])
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(err => {
+      console.log("Error changing input category", err);
+      res.sendStatus(500);
+    });
+})
 
 module.exports = router;
