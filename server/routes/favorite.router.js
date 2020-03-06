@@ -20,7 +20,20 @@ router.get('/', (req, res) => {
 // add a new favorite 
 router.post('/', (req, res) => {
   console.log("in server post with: ", req.body);
-  res.sendStatus(200);
+  const newFavorite = req.body;
+  const queryText = `INSERT INTO favorites ("title", "url", "category_id")
+                    VALUES ($1, $2, $3)`;
+  const queryValues = [
+    newFavorite.sendTitle,
+    newFavorite.sendUrl,
+    newFavorite.sendCat
+  ];
+  pool.query(queryText, queryValues)
+    .then(() => { res.sendStatus(201); })
+    .catch((err) => {
+      console.log('Error completing SELECT favorite query', err);
+      res.sendStatus(500);
+    });
 });
 
 // update given favorite with a category id ----------------can use this route to move favorites later
