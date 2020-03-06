@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
+import swal from "sweetalert";
 
 class Favorite extends Component {
   componentDidMount = () => {
@@ -11,8 +12,96 @@ class Favorite extends Component {
     this.props.dispatch({ type: "DISPLAY_FAV" });
   };
 
-  deleteFav = (remove) => {
+  deleteFav = remove => {
     this.props.dispatch({ type: "REMOVE_FAV", payload: remove });
+  };
+
+  editFav = edit => {
+    console.log('In editFav', edit);
+    swal("Pick a category for your favorite", {
+      buttons: {
+        funny: {
+          text: "Funny!",
+          value: "funny"
+        },
+        cohort: {
+          text: "Cohort!",
+          value: "cohort"
+        },
+        cartoon: {
+          text: "Cartoon!",
+          value: "cartoon"
+        },
+        nsfw: {
+          text: "NSFW",
+          value: "nsfw"
+        },
+        misc: {
+          text: "MISC!",
+          value: "misc"
+        }
+      }
+    }).then(value => {
+      switch (value) {
+        case "funny":
+          swal("Awesome!", "Changing to funny favorites!", "success");
+          this.props.dispatch({
+            type: "CHANGE_FAV",
+            payload: {
+              sendId: edit,
+              sendCat: "1"
+            }
+          });
+          break;
+
+        case "cohort":
+          swal("Awesome!", "Changing to cohort favorites!", "success");
+          this.props.dispatch({
+            type: "CHANGE_FAV",
+            payload: {
+              sendId: edit,
+              sendCat: "2"
+            }
+          });
+          break;
+
+        case "cartoon":
+          swal("Awesome!", "Changing to cartoon favorites!", "success");
+          this.props.dispatch({
+            type: "CHANGE_FAV",
+            payload: {
+              sendId: edit,
+              sendCat: "3"
+            }
+          });
+          break;
+
+        case "nsfw":
+          swal("Awesome!", "Changing to NSFW favorites!", "success");
+          this.props.dispatch({
+            type: "CHANGE_FAV",
+            payload: {
+              sendId: edit,
+              sendCat: "4"
+            }
+          });
+          break;
+
+        case "misc":
+          swal("Awesome!", "Changing to misc favorites!", "success");
+          this.props.dispatch({
+            type: "CHANGE_FAV",
+            payload: {
+              sendId: edit,
+              sendCat: "5"
+            }
+          });
+          break;
+
+        default:
+          swal("Something went wrong!");   
+      }
+    });
   };
 
   render() {
@@ -51,6 +140,11 @@ class Favorite extends Component {
                         Remove From Favorites
                       </button>
                       <br />
+                      <br></br>
+                      <button onClick={() => this.editFav(image.id)}>
+                        Change Categories
+                      </button>
+                      <br></br>
                     </div>
                   </div>
                 ))}

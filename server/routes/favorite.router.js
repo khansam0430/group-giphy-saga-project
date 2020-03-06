@@ -56,9 +56,9 @@ router.delete('/:id', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  const updateCategory = req.body;
+  console.log('IN POST WITH:', req.body, req.params);
   const queryText = `UPDATE favorites SET "category_id" = $1 WHERE id=$2;`;
-  const queryValues = [updateCategory.id]
+  const queryValues = Number(req.body.sendCat)
   pool.query(queryText, [queryValues, req.params.id])
     .then(() => {
       res.sendStatus(200);

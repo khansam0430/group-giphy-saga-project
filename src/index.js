@@ -16,6 +16,7 @@ function* rootSaga() {
     yield takeEvery('DISPLAY_FAV', getGiphy);
     yield takeEvery('ADD_FAV', postGiphy);
     yield takeEvery('REMOVE_FAV', deleteGiphy);
+    yield takeEvery('CHANGE_FAV', putGiphy);
 }
 
 function* addGiphy(giphy) {
@@ -49,6 +50,16 @@ function* deleteGiphy(remove) {
     } catch(error){
         console.log(error);
     }
+}
+
+function* putGiphy(edit) {
+  console.log("in saga PUT with: ", edit.payload.sendId);
+  try {
+    yield Axios.put(`/api/favorite/${edit.payload.sendId}`, edit.payload);
+    yield put({ type: "DISPLAY_FAV" });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // Create sagaMiddleware
